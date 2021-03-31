@@ -1,0 +1,29 @@
+<project>
+ <properties autorotation="0" encryptAssets="0" fps="60" scaleMode="0" mouseToTouch="1" iosDevice="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" mouseTouchOrder="0" encryptCode="0" retinaDisplay="0" touchToMouse="1" assetsOnly="0" orientation="0" architecture="1">
+  <imageScales/>
+ </properties>
+ <file source="scenemanager.lua"/>
+ <file source="main.lua"/>
+ <file source="easing.lua"/>
+ <file source="button.lua"/>
+ <folder name="Images">
+  <file source="../Images/hitlerbaby.jpg"/>
+  <file source="../Images/hitler.jpg"/>
+  <file source="../Images/Pausa.jpg"/>
+  <file source="../Stencil8bit-Regular.otf"/>
+  <file source="../Images/Parar.png"/>
+  <file source="../Images/Pala2.png"/>
+  <file source="../Images/Pala.png"/>
+  <file source="../Images/Fondo.jpg"/>
+  <file source="../Images/Bola.png"/>
+ </folder>
+ <folder name="Sounds">
+  <file source="../Sounds/Music.mp3"/>
+  <file source="../Sounds/Gato.wav"/>
+  <file source="../Sounds/Boom.wav"/>
+ </folder>
+ <file source="Ganar.lua"/>
+ <file source="Muerte.lua"/>
+ <file source="Pong.lua"/>
+ <file source="Principio.lua"/>
+</project>
