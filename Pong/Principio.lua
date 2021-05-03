@@ -1,6 +1,6 @@
 Principio = gideros.class(Sprite)
 
-function onClick(self, event)
+function onClickP(self, event)
 	if 	event.x > self.Jugar:getX() and
 		event.x < self.Jugar:getX() + self.Jugar:getWidth() and
 		event.y > self.Jugar:getY() - self.Jugar:getHeight() / 2 and
@@ -16,8 +16,6 @@ function onClick(self, event)
 	end
 end
 
-function onClick_event_Salir(event)
-end
 
 function Principio:init()
 
@@ -64,6 +62,6 @@ function Principio:init()
 	Hecho:setTextColor(0x000000)
 	stage:addChild(Hecho)
 	
-	self:addEventListener(Event.MOUSE_UP, onClick, self)
+	self:addEventListener(Event.MOUSE_UP, onClickP, self)
 	
 end

@@ -23,6 +23,12 @@ end
 
 --Funciones al iniciar
 function onEnterFrame(self, event)
+
+
+	if not self.active then
+		return
+	end
+	
 	local x = self.Bola:getX()
 	local y = self.Bola:getY()
 	
@@ -42,6 +48,7 @@ function onEnterFrame(self, event)
 		self.golesPlayer:setText(self.goles_Player)
 		self.Boom:play(0,false)
 		if self.goles_Player >= 10 then
+			self:stop()
 			sceneManager:changeScene("Ganar", 1, SceneManager.flipWithFade, easing.outBack)
 		end
 	end
@@ -52,6 +59,7 @@ function onEnterFrame(self, event)
 		self.golesCPU:setText(self.goles_CPU)
 		self.Gato:play(0,false)
 		if self.goles_CPU >= 10 then
+			self:stop()
 			sceneManager:changeScene("Muerte", 1, SceneManager.flipWithFade, easing.outBack)
 		end
 	end
@@ -109,8 +117,30 @@ local function onMouseDown(self, event)
 	end
 end
 
+function Pong:reset()
+	
+	self.Bola:setPosition(0,260)
+	self.Pala:setPosition(110,450)
+	self.Pala2:setPosition(160,0)
+	self.goles_CPU = 0
+	self.goles_Player = 0
+	self.Bola.xdirection = 1
+	self.Bola.ydirection = 1
+	self.golesCPU:setText("")
+	self.golesPlayer:setText("")
+	
+end
+
+function Pong:start()
+	self.active = true
+end
+function Pong:stop()
+	self.active = false
+end
+
 function Pong:init()
 
+	self.active = true
 	--Cargar sprites fondo, palas y bola
 	local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
 	stage:addChild(Fondo)

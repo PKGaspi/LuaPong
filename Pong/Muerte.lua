@@ -1,6 +1,6 @@
 Muerte = gideros.class(Sprite)
 
-function onClick(self, event)
+function onClickM(self, event)
 	if 	event.x > self.Jugar:getX() and
 		event.x < self.Jugar:getX() + self.Jugar:getWidth() and
 		event.y > self.Jugar:getY() - self.Jugar:getHeight() / 2 and
@@ -43,6 +43,6 @@ function Muerte:init()
 	self.Salir:setTextColor(0x000000)
 	stage:addChild(self.Salir)
 
-	self:addEventListener(Event.MOUSE_UP, onClick)
+	self:addEventListener(Event.MOUSE_UP, onClickM, self)
 end
 
