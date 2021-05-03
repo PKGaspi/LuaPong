@@ -1,7 +1,6 @@
 Principio = gideros.class(Sprite)
 
 function onClick(self, event)
-	print(event.x, event.y)
 	if 	event.x > self.Jugar:getX() and
 		event.x < self.Jugar:getX() + self.Jugar:getWidth() and
 		event.y > self.Jugar:getY() - self.Jugar:getHeight() / 2 and

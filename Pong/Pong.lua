@@ -41,6 +41,9 @@ function onEnterFrame(self, event)
 		self.goles_Player = self.goles_Player+1
 		self.golesPlayer:setText(self.goles_Player)
 		self.Boom:play(0,false)
+		if self.goles_Player >= 10 then
+			sceneManager:changeScene("Ganar", 1, SceneManager.flipWithFade, easing.outBack)
+		end
 	end
 	if y > 480 - self.Bola:getHeight() then
 		x = 0 - self.Bola:getWidth()
@@ -48,6 +51,9 @@ function onEnterFrame(self, event)
 		self.goles_CPU = self.goles_CPU+1
 		self.golesCPU:setText(self.goles_CPU)
 		self.Gato:play(0,false)
+		if self.goles_CPU >= 10 then
+			sceneManager:changeScene("Muerte", 1, SceneManager.flipWithFade, easing.outBack)
+		end
 	end
 	if self.Bola:collision(self.Pala2) then
 		self.Bola.ydirection = 1
