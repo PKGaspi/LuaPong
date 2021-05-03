@@ -20,6 +20,7 @@ stage:addChild(Pausa)
 Pausa:setPosition(0,130)
 
 local Music = Sound.new("Sounds/Music.mp3")
+Music:play(1,true)
 
 fuente = TTFont.new("Images/Stencil8bit-Regular.otf",70)
 Jugar = TextField.new(fuente, "Jugar")
@@ -43,7 +44,6 @@ Hecho:setTextColor(0x000000)
 stage:addChild(Hecho)
 
 function onEnterFrame(event)
-	Music:play(1,true)
 end
 
 function onClick_event_Jugar(event)
