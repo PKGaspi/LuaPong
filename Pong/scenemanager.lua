@@ -261,7 +261,6 @@ function SceneManager:changeScene(scene, duration, transition, ease, options)
 	end
 	
 	if self.scene1 == nil then
-		print(self.scenes[scene])
 		self.scene1 = self.scenes[scene].new(options and options.userData)
 		self:addChild(self.scene1)
 		dispatchEvent(self, "transitionBegin")

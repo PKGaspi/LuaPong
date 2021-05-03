@@ -1,52 +1,58 @@
 Pong = gideros.class(Sprite)
 
---Cargar sprites fondo, palas y bola
-local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
-stage:addChild(Fondo)
+function Pong:init()
 
-local Pala2 = Bitmap.new(Texture.new("Images/Pala2.png"))
-stage:addChild(Pala2)
-Pala2:setPosition(160,0)
+	--Cargar sprites fondo, palas y bola
+	local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
+	stage:addChild(Fondo)
 
---Movimiento Pala máquina
-Pala2.xdirection = 1
-Pala2.xspeed = 7
+	local Pala2 = Bitmap.new(Texture.new("Images/Pala2.png"))
+	stage:addChild(Pala2)
+	Pala2:setPosition(160,0)
 
-local Pala = Bitmap.new(Texture.new("Images/Pala.png"))
-stage:addChild(Pala)
-Pala:setPosition(110,450)
+	--Movimiento Pala máquina
+	Pala2.xdirection = 1
+	Pala2.xspeed = 7
 
-local Bola = Bitmap.new(Texture.new("Images/Bola.png"))
-stage:addChild(Bola)
-Bola:setPosition(0,260)
+	local Pala = Bitmap.new(Texture.new("Images/Pala.png"))
+	stage:addChild(Pala)
+	Pala:setPosition(110,450)
 
-local GolCPU = Sound.new("Sounds/Gato.wav")
+	local Bola = Bitmap.new(Texture.new("Images/Bola.png"))
+	stage:addChild(Bola)
+	Bola:setPosition(0,260)
 
-local goles_CPU = 0
-local goles_Player = 0
-local Gato = Sound.new("Sounds/Gato.wav")
-local Boom = Sound.new("Sounds/Boom.wav")
---Movimiento Bola
-Bola.xdirection = 1
-Bola.ydirection = 1
-Bola.xspeed = 5
-Bola.yspeed = 6.3
+	local GolCPU = Sound.new("Sounds/Gato.wav")
 
---Texto CPU
-fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
-golesCPU = TextField.new(fuente, "")
-golesCPU:setX(10)
-golesCPU:setY(20)
-golesCPU:setTextColor(0x000000)
-stage:addChild(golesCPU)
---Texto Player
-fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
-golesPlayer = TextField.new(fuente, "")
-golesPlayer:setX(10)
-golesPlayer:setY(475)
-golesPlayer:setTextColor(0x000000)
-stage:addChild(golesPlayer)
+	local goles_CPU = 0
+	local goles_Player = 0
+	local Gato = Sound.new("Sounds/Gato.wav")
+	local Boom = Sound.new("Sounds/Boom.wav")
+	--Movimiento Bola
+	Bola.xdirection = 1
+	Bola.ydirection = 1
+	Bola.xspeed = 5
+	Bola.yspeed = 6.3
 
+	--Texto CPU
+	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
+	golesCPU = TextField.new(fuente, "")
+	golesCPU:setX(10)
+	golesCPU:setY(20)
+	golesCPU:setTextColor(0x000000)
+	stage:addChild(golesCPU)
+	--Texto Player
+	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
+	golesPlayer = TextField.new(fuente, "")
+	golesPlayer:setX(10)
+	golesPlayer:setY(475)
+	golesPlayer:setTextColor(0x000000)
+	stage:addChild(golesPlayer)
+
+	stage:addEventListener(Event.MOUSE_DOWN, onMouseDown, Pala)
+	stage:addEventListener(Event.MOUSE_MOVE, onMouseMove, Pala)
+	stage:addEventListener(Event.ENTER_FRAME,onEnterFrame)
+end
 --Colisiones
 function Sprite:collision(sprite2)
 	-- self bottom < other srite top
@@ -149,7 +155,3 @@ local function onMouseDown(self, event)
 		end
 	end
 end
-
-stage:addEventListener(Event.MOUSE_DOWN, onMouseDown, Pala)
-stage:addEventListener(Event.MOUSE_MOVE, onMouseMove, Pala)
-stage:addEventListener(Event.ENTER_FRAME,onEnterFrame)
