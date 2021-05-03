@@ -1,58 +1,5 @@
 Pong = gideros.class(Sprite)
 
-function Pong:init()
-
-	--Cargar sprites fondo, palas y bola
-	local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
-	stage:addChild(Fondo)
-
-	local Pala2 = Bitmap.new(Texture.new("Images/Pala2.png"))
-	stage:addChild(Pala2)
-	Pala2:setPosition(160,0)
-
-	--Movimiento Pala máquina
-	Pala2.xdirection = 1
-	Pala2.xspeed = 7
-
-	local Pala = Bitmap.new(Texture.new("Images/Pala.png"))
-	stage:addChild(Pala)
-	Pala:setPosition(110,450)
-
-	local Bola = Bitmap.new(Texture.new("Images/Bola.png"))
-	stage:addChild(Bola)
-	Bola:setPosition(0,260)
-
-	local GolCPU = Sound.new("Sounds/Gato.wav")
-
-	local goles_CPU = 0
-	local goles_Player = 0
-	local Gato = Sound.new("Sounds/Gato.wav")
-	local Boom = Sound.new("Sounds/Boom.wav")
-	--Movimiento Bola
-	Bola.xdirection = 1
-	Bola.ydirection = 1
-	Bola.xspeed = 5
-	Bola.yspeed = 6.3
-
-	--Texto CPU
-	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
-	golesCPU = TextField.new(fuente, "")
-	golesCPU:setX(10)
-	golesCPU:setY(20)
-	golesCPU:setTextColor(0x000000)
-	stage:addChild(golesCPU)
-	--Texto Player
-	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
-	golesPlayer = TextField.new(fuente, "")
-	golesPlayer:setX(10)
-	golesPlayer:setY(475)
-	golesPlayer:setTextColor(0x000000)
-	stage:addChild(golesPlayer)
-
-	stage:addEventListener(Event.MOUSE_DOWN, onMouseDown, Pala)
-	stage:addEventListener(Event.MOUSE_MOVE, onMouseMove, Pala)
-	stage:addEventListener(Event.ENTER_FRAME,onEnterFrame)
-end
 --Colisiones
 function Sprite:collision(sprite2)
 	-- self bottom < other srite top
@@ -75,83 +22,139 @@ function Sprite:collision(sprite2)
 end
 
 --Funciones al iniciar
-function onEnterFrame(event)
-	local x = Bola:getX()
-	local y = Bola:getY()
+function onEnterFrame(self, event)
+	local x = self.Bola:getX()
+	local y = self.Bola:getY()
 	
-	x = x + (Bola.xspeed * Bola.xdirection)
-	y = y + (Bola.yspeed * Bola.ydirection)
+	x = x + (self.Bola.xspeed * self.Bola.xdirection)
+	y = y + (self.Bola.yspeed * self.Bola.ydirection)
 	
 	if x < 0 then
-		Bola.xdirection = 1
+		self.Bola.xdirection = 1
 	end
-	if x > 320 - Bola:getWidth() then
-		Bola.xdirection = -1
+	if x > 320 - self.Bola:getWidth() then
+		self.Bola.xdirection = -1
 	end
 	if y < 0 then
-		x = 320 - Bola:getWidth()
-		y = 240 - (Bola:getHeight()/2)
-		goles_Player = goles_Player+1
-		golesPlayer:setText(goles_Player)
-		Boom:play(0,false)
+		x = 320 - self.Bola:getWidth()
+		y = 240 - (self.Bola:getHeight()/2)
+		self.goles_Player = self.goles_Player+1
+		self.golesPlayer:setText(self.goles_Player)
+		self.Boom:play(0,false)
 	end
-	if y > 480 - Bola:getHeight() then
-		x = 0 - Bola:getWidth()
-		y = 240 - (Bola:getHeight()/2)
-		goles_CPU = goles_CPU+1
-		golesCPU:setText(goles_CPU)
-		Gato:play(0,false)
+	if y > 480 - self.Bola:getHeight() then
+		x = 0 - self.Bola:getWidth()
+		y = 240 - (self.Bola:getHeight()/2)
+		self.goles_CPU = self.goles_CPU+1
+		self.golesCPU:setText(self.goles_CPU)
+		self.Gato:play(0,false)
 	end
-	if Bola:collision(Pala2) then
-		Bola.ydirection = 1
+	if self.Bola:collision(self.Pala2) then
+		self.Bola.ydirection = 1
 		if x > 160 then
-			Bola.xdirection = 1
+			self.Bola.xdirection = 1
 		end
 		if x <= 160 then
-			Bola.xdirection = -1
+			self.Bola.xdirection = -1
 		end
 	end 
-	if Bola:collision(Pala) then
-		Bola.ydirection = -1
+	if self.Bola:collision(self.Pala) then
+		self.Bola.ydirection = -1
 		if x > 160 then
-			Bola.xdirection = 1
+			self.Bola.xdirection = 1
 		end
 		if x <= 160 then
-			Bola.xdirection = -1
+			self.Bola.xdirection = -1
 		end
 	end
-	Bola:setX(x)
-	Bola:setY(y)
+	self.Bola:setX(x)
+	self.Bola:setY(y)
 	
 	--colisión Pala máquina con paredes
-	local x = Pala2:getX()
+	local x = self.Pala2:getX()
 	
-	x = x + (Pala2.xspeed * Pala2.xdirection)
+	x = x + (self.Pala2.xspeed * self.Pala2.xdirection)
 	
 	if x < 0 then
-		Pala2.xdirection = 1
+		self.Pala2.xdirection = 1
 	end
-	if x > 320 - Pala2:getWidth() then
-		Pala2.xdirection = -1
+	if x > 320 - self.Pala2:getWidth() then
+		self.Pala2.xdirection = -1
 	end
 	
-	Pala2:setX(x)
+	self.Pala2:setX(x)
 end
 
 --Movimiento Pala jugador
 local function onMouseMove(self, event)
-	if event.x < Pala:getX() + 100 then
-		if event.x > Pala:getX() - 100 then
-			local dx = event.x - self.x0
-				self:setX(self:getX() + dx)
-				self.x0 = event.x
+	if event.x < self.Pala:getX() + 100 then
+		if event.x > self.Pala:getX() - 100 then
+			local dx = event.x - self.Pala.x0
+				self.Pala:setX(self.Pala:getX() + dx)
+				self.Pala.x0 = event.x
 		end
 	end
 end
 local function onMouseDown(self, event)
-	if event.x < Pala:getX() + 100 then
-		if event.x > Pala:getX() - 100 then
-			self.x0 = event.x
+	if event.x < self.Pala:getX() + 100 then
+		if event.x > self.Pala:getX() - 100 then
+			self.Pala.x0 = event.x
 		end
 	end
+end
+
+function Pong:init()
+
+	--Cargar sprites fondo, palas y bola
+	local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
+	stage:addChild(Fondo)
+
+	self.Pala2 = Bitmap.new(Texture.new("Images/Pala2.png"))
+	stage:addChild(self.Pala2)
+	self.Pala2:setPosition(160,0)
+
+	--Movimiento Pala máquina
+	self.Pala2.xdirection = 1
+	self.Pala2.xspeed = 7
+
+	self.Pala = Bitmap.new(Texture.new("Images/Pala.png"))
+	stage:addChild(self.Pala)
+	self.Pala:setPosition(110,450)
+
+	self.Bola = Bitmap.new(Texture.new("Images/Bola.png"))
+	stage:addChild(self.Bola)
+	self.Bola:setPosition(0,260)
+	
+	-- esta variable de mierda la dejo aquí porque el programador
+	-- original de esta cosa así lo quería y por los memes.
+	local GolCPU = Sound.new("Sounds/Gato.wav")
+
+	self.goles_CPU = 0
+	self.goles_Player = 0
+	self.Gato = Sound.new("Sounds/Gato.wav")
+	self.Boom = Sound.new("Sounds/Boom.wav")
+	--Movimiento Bola
+	self.Bola.xdirection = 1
+	self.Bola.ydirection = 1
+	self.Bola.xspeed = 5
+	self.Bola.yspeed = 6.3
+
+	--Texto CPU
+	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
+	self.golesCPU = TextField.new(fuente, "")
+	self.golesCPU:setX(10)
+	self.golesCPU:setY(20)
+	self.golesCPU:setTextColor(0x000000)
+	stage:addChild(self.golesCPU)
+	--Texto Player
+	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",25)
+	self.golesPlayer = TextField.new(fuente, "")
+	self.golesPlayer:setX(10)
+	self.golesPlayer:setY(475)
+	self.golesPlayer:setTextColor(0x000000)
+	stage:addChild(self.golesPlayer)
+
+	stage:addEventListener(Event.MOUSE_DOWN, onMouseDown, self)
+	stage:addEventListener(Event.MOUSE_MOVE, onMouseMove, self)
+	stage:addEventListener(Event.ENTER_FRAME, onEnterFrame, self)
 end

@@ -8,4 +8,4 @@ sceneManager = SceneManager.new({
 
 stage:addChild(sceneManager)
 
-sceneManager:changeScene("Principio", 1, SceneManager.flipWithFade, easing.outBack)
+sceneManager:changeScene("Pong", 1, SceneManager.flipWithFade, easing.outBack)
