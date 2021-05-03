@@ -1,3 +1,5 @@
+Principio = gideros.class(Sprite)
+
 local Fondo = Bitmap.new(Texture.new("Images/Fondo.jpg"))
 stage:addChild(Fondo)
 

@@ -1,3 +1,5 @@
+Ganar = gideros.class(Sprite)
+
 local Hitlerbaby = Bitmap.new(Texture.new("Images/Hitlerbaby.jpg"))
 stage:addChild(Hitlerbaby)
 Hitlerbaby:setScale(1.4,1.4)

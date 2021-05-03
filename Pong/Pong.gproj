@@ -1,29 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
 <project>
- <properties autorotation="0" encryptAssets="0" fps="60" scaleMode="0" mouseToTouch="1" iosDevice="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" mouseTouchOrder="0" encryptCode="0" retinaDisplay="0" touchToMouse="1" assetsOnly="0" orientation="0" architecture="1">
+ <properties html5_crash="" build_number="1" winrt_org="GiderosMobile" win_domain="giderosmobile.com" touchToMouse="1" html5_fbload="100" splash_v_image="" html5_host="" atv_bundle="com.yourdomain.yourapp-atv" tv_icon="" windowHeight="0" backgroundColor="#ffffff" fps="60" win_org="GiderosMobile" html5_pack="0" retinaDisplay="0" logicalWidth="320" architecture="1" vsync="0" macos_category="5" logicalHeight="480" mainluaOnly="0" osx_org="GiderosMobile" windowWidth="0" osx_category="5" version="1.0" winrt_package="com.yourdomain.yourapp" encryptCode="0" html5_symbols="0" html5_mem="256" splash_h_image="" app_icon="" orientation="0" osx_domain="giderosmobile.com" osx_installerId="" osx_signingId="" disableSplash="0" app_name="" iosDevice="0" autorotation="0" splashScaleMode="0" mouseToTouch="1" macos_bundle="com.yourdomain.yourapp-macos" html5_wasm="0" mouseTouchOrder="0" scaleMode="0" encryptAssets="0" osx_bundle="com.yourdomain." exportMode="0" version_code="1" html5_fbinstant="0" ios_bundle="com.yourdomain.yourapp-ios">
   <imageScales/>
+  <plugins/>
+  <exports/>
  </properties>
- <file source="scenemanager.lua"/>
- <file source="main.lua"/>
- <file source="easing.lua"/>
- <file source="button.lua"/>
  <folder name="Images">
-  <file source="../Images/hitlerbaby.jpg"/>
-  <file source="../Images/hitler.jpg"/>
+  <file source="../Images/Bola.png"/>
+  <file source="../Images/Fondo.jpg"/>
+  <file source="../Images/Pala.png"/>
+  <file source="../Images/Pala2.png"/>
+  <file source="../Images/Parar.png"/>
   <file source="../Images/Pausa.jpg"/>
   <file source="../Stencil8bit-Regular.otf"/>
-  <file source="../Images/Parar.png"/>
-  <file source="../Images/Pala2.png"/>
-  <file source="../Images/Pala.png"/>
-  <file source="../Images/Fondo.jpg"/>
-  <file source="../Images/Bola.png"/>
+  <file source="../Images/hitler.jpg"/>
+  <file source="../Images/hitlerbaby.jpg"/>
  </folder>
  <folder name="Sounds">
-  <file source="../Sounds/Music.mp3"/>
-  <file source="../Sounds/Gato.wav"/>
   <file source="../Sounds/Boom.wav"/>
+  <file source="../Sounds/Gato.wav"/>
+  <file source="../Sounds/Music.mp3"/>
  </folder>
  <file source="Ganar.lua"/>
  <file source="Muerte.lua"/>
  <file source="Pong.lua"/>
  <file source="Principio.lua"/>
+ <file source="button.lua"/>
+ <file source="easing.lua"/>
+ <file source="main.lua"/>
+ <file source="scenemanager.lua"/>
 </project>

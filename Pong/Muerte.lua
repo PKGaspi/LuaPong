@@ -1,3 +1,5 @@
+Muerte = gideros.class(Sprite)
+
 local Hitler = Bitmap.new(Texture.new("Images/Hitler.jpg"))
 stage:addChild(Hitler)
 Hitler:setScale(.6,.6)
