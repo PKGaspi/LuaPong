@@ -1,5 +1,22 @@
 Ganar = gideros.class(Sprite)
 
+function onClick(self, event)
+	print(event.x, event.y)
+	if 	event.x > self.Jugar:getX() and
+		event.x < self.Jugar:getX() + self.Jugar:getWidth() and
+		event.y > self.Jugar:getY() - self.Jugar:getHeight() / 2 and
+		event.y < self.Jugar:getY() + self.Jugar:getHeight() / 2
+	then
+		sceneManager:changeScene("Pong", 1, SceneManager.flipWithFade, easing.outBack)
+	elseif event.x > self.Salir:getX() and
+		event.x < self.Salir:getX() + self.Salir:getWidth() and
+		event.y > self.Salir:getY() - self.Jugar:getHeight() / 2 and
+		event.y < self.Salir:getY() + self.Salir:getHeight() / 2
+	then
+		application:exit()
+	end
+end
+
 function Ganar:init()
 	local Hitlerbaby = Bitmap.new(Texture.new("Images/Hitlerbaby.jpg"))
 	stage:addChild(Hitlerbaby)
@@ -14,27 +31,19 @@ function Ganar:init()
 	stage:addChild(GanarTXT)
 
 	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",30)
-	Jugar = TextField.new(fuente, "Juega otra vez")
-	Jugar:setX(20)
-	Jugar:setY(140)
-	Jugar:setTextColor(0x000000)
-	stage:addChild(Jugar)
+	self.Jugar = TextField.new(fuente, "Juega otra vez")
+	self.Jugar:setX(20)
+	self.Jugar:setY(140)
+	self.Jugar:setTextColor(0x000000)
+	stage:addChild(self.Jugar)
 
 	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",30)
-	Salir = TextField.new(fuente, "Salir")
-	Salir:setX(20)
-	Salir:setY(160)
-	Salir:setTextColor(0x000000)
-	stage:addChild(Salir)
+	self.Salir = TextField.new(fuente, "Salir")
+	self.Salir:setX(20)
+	self.Salir:setY(160)
+	self.Salir:setTextColor(0x000000)
+	stage:addChild(self.Salir)
 
-	Jugar:addEventListener("click", onClick_event_Jugar)
-	Salir:addEventListener("click", onClick_event_Salir)
+	Jugar:addEventListener(Event.MOUSE_UP, onClick)
 end
 
-function onClick_event_Jugar(event)
-	sceneManager:changeScene("Pong", 1, SceneManager.flipWithFade, easing.outBack)
-end
-
-function onClick_event_Salir(event)
-	application:exit()
-end

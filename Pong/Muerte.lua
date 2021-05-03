@@ -1,5 +1,22 @@
 Muerte = gideros.class(Sprite)
 
+function onClick(self, event)
+	print(event.x, event.y)
+	if 	event.x > self.Jugar:getX() and
+		event.x < self.Jugar:getX() + self.Jugar:getWidth() and
+		event.y > self.Jugar:getY() - self.Jugar:getHeight() / 2 and
+		event.y < self.Jugar:getY() + self.Jugar:getHeight() / 2
+	then
+		sceneManager:changeScene("Pong", 1, SceneManager.flipWithFade, easing.outBack)
+	elseif event.x > self.Salir:getX() and
+		event.x < self.Salir:getX() + self.Salir:getWidth() and
+		event.y > self.Salir:getY() - self.Jugar:getHeight() / 2 and
+		event.y < self.Salir:getY() + self.Salir:getHeight() / 2
+	then
+		application:exit()
+	end
+end
+
 function Muerte:init()
 	local Hitler = Bitmap.new(Texture.new("Images/Hitler.jpg"))
 	stage:addChild(Hitler)
@@ -14,27 +31,19 @@ function Muerte:init()
 	stage:addChild(PerderTXT)
 
 	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",30)
-	Jugar = TextField.new(fuente, "Juega otra vez")
-	Jugar:setX(60)
-	Jugar:setY(190)
-	Jugar:setTextColor(0x000000)
-	stage:addChild(Jugar)
+	self.Jugar = TextField.new(fuente, "Juega otra vez")
+	self.Jugar:setX(60)
+	self.Jugar:setY(190)
+	self.Jugar:setTextColor(0x000000)
+	stage:addChild(self.Jugar)
 
 	fuente = TTFont.new("Images/Stencil8bit-Regular.otf",30)
-	Salir = TextField.new(fuente, "Salir")
-	Salir:setX(60)
-	Salir:setY(210)
-	Salir:setTextColor(0x000000)
-	stage:addChild(Salir)
+	self.Salir = TextField.new(fuente, "Salir")
+	self.Salir:setX(60)
+	self.Salir:setY(210)
+	self.Salir:setTextColor(0x000000)
+	stage:addChild(self.Salir)
 
-	Jugar:addEventListener("click", onClick_event_Jugar)
-	Salir:addEventListener("click", onClick_event_Salir)
+	Jugar:addEventListener(Event.MOUSE_UP, onClick)
 end
 
-function onClick_event_Jugar(event)
-	sceneManager:changeScene("Pong", 1, SceneManager.flipWithFade, easing.outBack)
-end
-
-function onClick_event_Salir(event)
-	application:exit()
-end
